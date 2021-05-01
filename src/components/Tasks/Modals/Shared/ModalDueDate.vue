@@ -1,0 +1,36 @@
+<template>
+  <div class="row q-mb-sm">
+    <q-input
+      outlined
+      :value="dueDate"
+      label="Due Date"
+      clearable
+      @input="$emit('update:dueDate', $event)"
+      class="col"
+    >
+      <template v-slot:append>
+        <q-icon name="event" class="cursor-pointer">
+          <q-popup-proxy
+            ref="qDateProxy"
+            transition-show="scale"
+            transition-hide="scale"
+          >
+            <q-date :value="dueDate" @input="$emit('update:dueDate', $event)">
+              <div class="row items-center justify-end">
+                <q-btn v-close-popup label="Close" color="primary" flat />
+              </div>
+            </q-date>
+          </q-popup-proxy>
+        </q-icon>
+      </template>
+    </q-input>
+  </div>
+</template>
+
+<script>
+export default {
+  props: ["dueDate"],
+};
+</script>
+<style>
+</style>
